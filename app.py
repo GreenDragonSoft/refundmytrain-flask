@@ -2,7 +2,8 @@
 
 
 import os
-
+import sys
+import logging
 import functools
 
 from collections import OrderedDict
@@ -15,6 +16,10 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.WARN)
+
+
 DB = SQLAlchemy(app)
 API_WRITE_KEY = os.environ['API_WRITE_KEY']
 
