@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<h1>Train Delays</h1>
+
+<ul>
+  {% for train_arrival in train_arrivals %}
+  <li>
+    <span>{{ train_arrival.station_3alpha }}</span>
+    <span>{{ train_arrival.timetable_datetime }}</span>
+    <span>{{ train_arrival.minutes_late }} minutes late</span>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock %}
