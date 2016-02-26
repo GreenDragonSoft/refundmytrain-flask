@@ -12,10 +12,21 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 DB = SQLAlchemy(app)
 
 
-class User(DB.Model):
-    id = DB.Column(DB.Integer, primary_key=True)
-    name = DB.Column(DB.String(80))
-    email = DB.Column(DB.String(120), unique=True)
+class TrainArrival(DB.Model):
+    id = DB.Column(
+        DB.Integer, primary_key=True)
+
+    timetable_datetime = DB.Column(
+        DB.DateTime(timezone=True)
+    )
+
+    actual_datetime = DB.Column(
+        DB.DateTime(timezone=True)
+    )
+
+    station_3alpha = DB.Column(
+        DB.String(length=5)
+    )
 
     def __init__(self, name, email):
         self.name = name
